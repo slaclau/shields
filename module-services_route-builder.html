@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: services/build-status.js</title>
+    <title>JSDoc: Class: module:services/route-builder</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,116 +17,597 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: services/build-status.js</h1>
+    <h1 class="page-title">Class: module:services/route-builder</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Common functions and schemas for tasks related to build status.
- *
- * @module
- */
+        <h2><span class="attribs"><span class="type-signature"></span></span>module:services/route-builder<span class="signature">(attrs)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
 
-import Joi from 'joi'
+<article>
+    <div class="container-overview">
+    
+        
 
-const greenStatuses = [
-  'fixed',
-  'passed',
-  'passing',
-  'succeeded',
-  'success',
-  'successful',
-]
+    
 
-const orangeStatuses = ['partially succeeded', 'unstable', 'timeout']
+    
+    <h4 class="name" id="module:services/route-builder"><span class="type-signature"></span>new module:services/route-builder<span class="signature">(attrs)</span><span class="type-signature"></span></h4>
+    
 
-const redStatuses = [
-  'broken',
-  'error',
-  'errored',
-  'failed',
-  'failing',
-  'failure',
-  'infrastructure_failure',
-]
+    
 
-const otherStatuses = [
-  'aborted',
-  'building',
-  'canceled',
-  'cancelled',
-  'created',
-  'expired',
-  'initiated',
-  'no builds',
-  'no tests',
-  'not built',
-  'not run',
-  'pending',
-  'processing',
-  'queued',
-  'running',
-  'scheduled',
-  'skipped',
-  'starting',
-  'stopped',
-  'testing',
-  'waiting',
-]
 
-const allStatuses = greenStatuses
-  .concat(orangeStatuses)
-  .concat(redStatuses)
-  .concat(otherStatuses)
 
-/**
- * Joi schema for validating Build Status.
- * Checks if the build status is present in the list of allowed build status.
- *
- * @type {Joi}
- */
-const isBuildStatus = Joi.equal(...allStatuses)
+<div class="description">
+    <p>Creates a RouteBuilder object.</p>
+</div>
 
-/**
- * Handles rendering concerns of badges that display build status.
- * Determines the message and color of the badge according to the build status.
- *
- * @param {object} attrs Refer to individual attributes
- * @param {string} [attrs.label] If provided then badge label is set to this value
- * @param {string} attrs.status Build status
- * @returns {object} Badge with label, message and color properties
- */
-function renderBuildStatusBadge({ label, status }) {
-  let message
-  let color
-  if (greenStatuses.includes(status)) {
-    message = 'passing'
-    color = 'brightgreen'
-  } else if (orangeStatuses.includes(status)) {
-    message = status === 'partially succeeded' ? 'passing' : status
-    color = 'orange'
-  } else if (redStatuses.includes(status)) {
-    message = status === 'failed' ? 'failing' : status
-    color = 'red'
-  } else {
-    message = status
-  }
-  return {
-    label,
-    message,
-    color,
-  }
-}
 
-export { isBuildStatus, renderBuildStatusBadge }
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>attrs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Refer to individual attributes</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>base</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Base URL, defaults to ''</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_route-builder.js.html">services/route-builder.js</a>, <a href="services_route-builder.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="format"><span class="type-signature"></span>format<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Get the format components separated by '/'</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_route-builder.js.html">services/route-builder.js</a>, <a href="services_route-builder.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="push"><span class="type-signature"></span>push<span class="signature">(format, capture)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Saves the format and capture values in the RouteBuilder instance.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Pattern based on path-to-regex, for example: (?:(.+)\.)?${serviceBaseUrl}</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>capture</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Value to capture</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_route-builder.js.html">services/route-builder.js</a>, <a href="services_route-builder.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>RouteBuilder instance for chaining</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="toObject"><span class="type-signature"></span>toObject<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Returns a new object based on RouteBuilder instance containing its base, format and capture properties.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_route-builder.js.html">services/route-builder.js</a>, <a href="services_route-builder.js.html#line59">line 59</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Object containing base, format and capture properties of the RouteBuilder instance</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -140,7 +621,7 @@ export { isBuildStatus, renderBuildStatusBadge }
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 02 2023 06:14:27 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 02 2023 06:14:28 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
